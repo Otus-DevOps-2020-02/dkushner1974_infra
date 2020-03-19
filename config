@@ -1,0 +1,11 @@
+Host *
+ForwardAgent yes
+
+Host someinternalhost
+Hostname 10.132.0.3
+User appuser
+ProxyCommand ssh bastion nc %h %p
+
+Host bastion
+Hostname 35.233.15.194
+User appuser
