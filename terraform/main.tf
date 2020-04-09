@@ -1,6 +1,6 @@
 terraform {
   # Версия terraform
-  required_version = "0.12"
+  required_version = "0.12.24"
 }
 
 provider "google" {
@@ -72,17 +72,17 @@ resource "google_compute_instance" "app" {
 
 }
 
-resource "google_compute_firewall" "firewall_puma" {
-  name = "allow-puma-default"
+#resource "google_compute_firewall" "firewall_puma" {
+ # name = "allow-puma-default"
   # Название сети, в которой действует правило
-  network = "default"
+ # network = "default"
   # Какой доступ разрешить
-  allow {
-    protocol = "tcp"
-    ports    = ["9292"]
-  }
+ # allow {
+ #   protocol = "tcp"
+ #   ports    = ["9292"]
+#  }
   # Каким адресам разрешаем доступ
-  source_ranges = ["0.0.0.0/0"]
+#  source_ranges = ["0.0.0.0/0"]
   # Правило применимо для инстансов с перечисленными тэгами
-  target_tags = ["reddit-app"]
-}
+#  target_tags = ["reddit-app"]
+#}
