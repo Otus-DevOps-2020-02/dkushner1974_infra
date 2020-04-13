@@ -1,0 +1,7 @@
+"this is a garbage file"
+variables.json
+*.tfstate
+*.tfstate.*.backup
+*.tfstate.backup
+*.tfvars
+.terraform/
