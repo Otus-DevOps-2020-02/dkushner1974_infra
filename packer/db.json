@@ -1,4 +1,3 @@
-
 {
     "builders": [
         {
@@ -10,7 +9,7 @@
             "zone": "europe-west1-b",
             "ssh_username": "appuser",
             "machine_type": "{{user `machine_type`}}",
-            "image_description": "Образ для DevOpsOtus - БД",
+            "image_description": "Image for DevOps Trainig DB",
             "disk_size": "11",
             "disk_type": "pd-ssd",
             "network": "default",
