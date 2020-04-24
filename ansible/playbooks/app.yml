@@ -4,7 +4,6 @@
   become: true
   vars:
 
-
   roles:
     - app
     - jdauphant.nginx
