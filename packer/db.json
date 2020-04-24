@@ -1,29 +1,35 @@
 {
+    "variables": {
+	"project_id": "infra-18032020",
+	"source_image_family": "ubuntu-1604-lts",
+        "machine_type": "f1-micro"
+    },
+
+
     "builders": [
         {
             "type": "googlecompute",
-            "project_id": "infra-18032020",
-            "image_name": "reddit-db-base",
-            "image_family": "reddit-base",
-            "source_image_family": "ubuntu-1604-lts",
+            "project_id": "{{user `project_id`}}",
+            "image_name": "reddit-db-base-{{timestamp}}",
+            "image_family": "reddit-db-base",
+            "source_image_family": "{{user `source_image_family`}}",
             "zone": "europe-west1-b",
-            "ssh_username": "appuser",
+            "ssh_username": "root",
             "machine_type": "{{user `machine_type`}}",
-            "image_description": "Image for DevOps Trainig DB",
-            "disk_size": "11",
-            "disk_type": "pd-ssd",
-            "network": "default",
-            "tags": [
-                "puma-server"
-            ]
+	    "disk_size": "10",
+	    "disk_type": "pd-standard",
+	    "tags": "puma-server",
+	    "network": "default",
+	    "image_description": "reddit db"
+
         }
     ],
     "provisioners": [
         {
-            "type": "ansible",
-            "playbook_file": "ansible/packer_db.yml"
-          "extra_arguments": ["--tags", "install"],
-	  "ansible_env_vars": ["ANSIBLE_ROLES_PATH={{ pwd }}/ansible/roles"]
+	    "type": "ansible",
+	    "playbook_file": "ansible/playbooks/packer_db.yml",
+	    "extra_arguments": ["--tags", "install"],
+            "ansible_env_vars": ["ANSIBLE_ROLES_PATH={{ pwd }}/ansible/roles"]
         }
     ]
 }
