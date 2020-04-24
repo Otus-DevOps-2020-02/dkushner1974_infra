@@ -2,7 +2,5 @@
 - name: Configure MongoDB
   hosts: db
   become: true
-  vars:
-
   roles:
-    - db
+  - { role: db, tags: db }
