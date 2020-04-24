@@ -1,4 +1,3 @@
----
 - name: Deploy App
   hosts: app
   tasks:
@@ -9,12 +8,14 @@
         version: monolith
       notify: restart puma
 
-    - name: Bundle install
+    - name: bundle install
       bundler:
         state: present
         chdir: "/home/{{ deploy_user }}/reddit"
 
   handlers:
-  - name: restart puma
-    become: true
-    systemd: name=puma state=restarted
+    - name: restart puma
+      become: true
+      systemd:
+        name: puma
+        state: restarted
