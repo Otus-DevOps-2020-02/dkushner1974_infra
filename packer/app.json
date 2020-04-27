@@ -1,4 +1,10 @@
 {
+    "variables": {
+	"project_id": "infra-18032020",
+	"source_image_family": "ubuntu-1604-lts",
+        "machine_type": "f1-micro"
+    },
+
     "builders": [
         {
             "type": "googlecompute",
@@ -18,8 +24,10 @@
     ],
     "provisioners": [
         {
-          "type": "ansible",
-          "playbook_file": "ansible/packer_app.yml"
+	    "type": "ansible",
+	    "playbook_file": "ansible/playbooks/packer_db.yml",
+	    "extra_arguments": ["--tags", "install"],
+            "ansible_env_vars": ["ANSIBLE_ROLES_PATH={{ pwd }}/ansible/roles"]
         }
     ]
 }
